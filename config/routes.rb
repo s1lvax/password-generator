@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root "password#index"
-  #post 'password/create' to: "password#create"
+  post 'password', to: 'password#create'
+
+  get 'password', to: 'password#index'
 end
