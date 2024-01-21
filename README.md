@@ -1,24 +1,23 @@
-# README
+# Simple Password Generator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![Simple Password Generator](https://github.com/s1lvax/password-generator/assets/113994636/619eb915-c277-4464-b6d7-4e985c4de5a3)
 
-Things you may want to cover:
+## Introduction
 
-* Ruby version
+This is my Simple Password Generator. I know, there are tons of these out there, but I built this one as a fun way to learn **Ruby on Rails**.
 
-* System dependencies
+It's my first time using the framework, and I wanted to share what I've created.
 
-* Configuration
+## Features
 
-* Database creation
+- Set your own password length.
+- Your settings are saved, so it's easy to make more passwords (session).
+- Option to include special signs.
+- Option to include numbers.
 
-* Database initialization
+## Tech Stuff
 
-* How to run the test suite
+- Built with Ruby on Rails.
+- Runs in Docker, deployed on a VPS, and uses NGINX as the reverse proxy.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+That's it! :)
