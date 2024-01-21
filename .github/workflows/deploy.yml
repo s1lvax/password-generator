@@ -35,4 +35,4 @@ jobs:
           docker build -t password-manager .
           docker stop password-manager || true
           docker rm password-manager || true
-          docker run -d --name password-manager -p 3000:3000 -e RAILS_MASTER_KEY=f892b2ef9befa70389a499aa71c8bcdb password-manager
+          docker run -d --name password-manager -p 3000:3000 -e RAILS_MASTER_KEY=${{ secrets.SERVER_MASTERKEY }} password-manager
