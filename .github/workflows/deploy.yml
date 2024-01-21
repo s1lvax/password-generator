@@ -10,27 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Copy repository to server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          port: 22
-          source: "."
-          target: "/opt/docker/password-manager"
+    - name: Copy repository to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        port: 22
+        source: "."
+        target: "/opt/docker/password-manager"
 
-      - name: Restart Docker container
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          port: 22
-          script: |
-            cd /opt/docker/password-manager
-            docker-compose down
-            docker-compose up -d
+    - name: Build and deploy Docker container
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        port: 22
+        script: |
+          cd /opt/docker/password-manager
+          docker build -t password-manager .
+          docker stop password-manager || true
+          docker rm password-manager || true
+          docker run -d --name password-manager -p 3000:3000 -e RAILS_MASTER_KEY=f892b2ef9befa70389a499aa71c8bcdb password-manager
