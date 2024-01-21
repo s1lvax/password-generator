@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           source: "."
-          target: "/root/docker/password-manager"
+          target: "/opt/docker/password-manager"
 
       - name: Restart Docker container
         uses: appleboy/ssh-action@master
@@ -31,6 +31,6 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            cd /root/docker/password-manager
+            cd /opt/docker/password-manager
             docker-compose down
             docker-compose up -d
