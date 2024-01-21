@@ -7,7 +7,7 @@
           <%= form_tag(password_path, method: :post, data: { turbo: false }, class: "form") do %>
             <div class="mb-3">
                 <%= label_tag :passwordLength, "Password Length:", class: "form-label" %>
-                <%= number_field_tag :passwordLength, session[:password_length] || 8, min: 1, class: "form-control" %>
+                <%= number_field_tag :passwordLength, session[:password_length] || 20, min: 1, max: 50, class: "form-control" %>
             </div>
             <div class="mb-3 form-check">
                 <%= check_box_tag :withNumbers, 'on', session[:with_numbers], class: "form-check-input", id: "withNumbers" %>
